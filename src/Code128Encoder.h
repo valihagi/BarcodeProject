@@ -7,13 +7,13 @@ class Code128SymbolTable;
 
 class Code128Encoder {
     private:
-        Code128SymbolTable& m_symbolTable;
+        const Code128SymbolTable& m_symbolTable;
 
         bool validateInput(const char&);
         int calculateChecksum(std::vector<int>);
     public: 
-        Code128Encoder();
-        ~Code128Encoder();
+        explicit Code128Encoder(const Code128SymbolTable&);
+        ~Code128Encoder() = default;
 
         std::vector<int> encode(const std::string&);
 };

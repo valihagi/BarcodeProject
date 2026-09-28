@@ -3,12 +3,12 @@
 
 class Code128SymbolTable {
     public: 
-        Code128SymbolTable();
-        ~Code128SymbolTable();
+        Code128SymbolTable() = default;
+        ~Code128SymbolTable() = default;
 
-        int getStartCode();
-        int getStopCode();
-        int getCodeForCharacter(const unsigned char&);
+        int getStartCode() const;
+        int getStopCode() const;
+        int getCodeForCharacter(const unsigned char&) const;
 };
 
 #endif // CODE128SYMBOLTABLE_H

@@ -1,6 +1,9 @@
 #include "Code128Encoder.h"
 #include "Code128SymbolTable.h"
 
+Code128Encoder::Code128Encoder(const Code128SymbolTable& symbolTable) : m_symbolTable(symbolTable)
+{}
+
 bool Code128Encoder::validateInput(const char& character)
 {
 
