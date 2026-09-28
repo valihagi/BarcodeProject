@@ -20,9 +20,15 @@ int main()
         {
             break;
         }
+        std::vector<int> code128 =  encoder.encode(input);
+        if (code128.size() == 0)
+        {
+            std::cout << "You either entered and empty or an invalid string! Please try again.";
+            continue;
+        }
 
         std::cout << "You entered ";
-        for (int code : encoder.encode(input))
+        for (const int code : code128)
         {
            std::cout << code << " ";
         }
