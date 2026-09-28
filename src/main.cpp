@@ -15,10 +15,11 @@ int main()
     {
         std::cout << "Please enter an ASCII string or type \"quit\" to exit: ";
         std::getline(std::cin, input);
+        std::string command = input; // copy to prevent making the input that will get encoded lowercase!
 
         //tolowercase
-        std::transform(input.begin(), input.end(), input.begin(),::tolower);
-        if (input == "quit")
+        std::transform(command.begin(), command.end(), command.begin(),::tolower);
+        if (command == "quit")
         {
             break;
         }
