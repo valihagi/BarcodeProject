@@ -3,17 +3,19 @@
 
 #include <vector>
 
-class Code128SymbolTable {
-    private:
-        bool validateInput(std::string);
-        int getStartCode();
-        int getCodeFromCharacter(char character);
-        int calculateChecksum(std::vector<int> code);
-    public: 
-        Code128SymbolTable();
-        ~Code128SymbolTable();
+class Code128SymbolTable;
 
-        std::vector<int> encode(const std::string &input);
+class Code128Encoder {
+    private:
+        Code128SymbolTable& m_symbolTable;
+
+        bool validateInput(const char&);
+        int calculateChecksum(std::vector<int>);
+    public: 
+        Code128Encoder();
+        ~Code128Encoder();
+
+        std::vector<int> encode(const std::string&);
 };
 
 #endif // CODE128ENCODER_H

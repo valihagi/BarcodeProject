@@ -1,26 +1,35 @@
 #include "Code128Encoder.h"
+#include "Code128SymbolTable.h"
 
-bool Code128SymbolTable::validateInput(std::string input)
+bool Code128Encoder::validateInput(const char& character)
 {
+
+    if (character < 32 || character > 126)
+    {
+        return false;
+    }
     return true;
 }
 
-int Code128SymbolTable::getStartCode()
-{
-    return 104;
-}
-
-int Code128SymbolTable::getCodeFromCharacter(char character)
+int Code128Encoder::calculateChecksum(std::vector<int> code)
 {
     return 0;
 }
 
-int Code128SymbolTable::calculateChecksum(std::vector<int> code)
+std::vector<int> Code128Encoder::encode(const std::string &input)
 {
-    return 0;
-}
+    std::vector<int> code{m_symbolTable.getStartCode()};
 
-std::vector<int> Code128SymbolTable::encode(const std::string &input)
-{
-    return std::vector<int>();
+    for (const unsigned char& c : input)
+    {
+        if (validateInput(c) == false)
+        {
+            return std::vector<int>();
+        }
+        code.push_back(m_symbolTable.getCodeForCharacter(c));
+    }
+
+    code.push_back(m_symbolTable.getStopCode());
+    code.push_back(calculateChecksum(code));
+    return code;
 }
