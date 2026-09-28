@@ -1,5 +1,7 @@
 #include <iostream>
 #include <string>
+#include <cctype>
+#include <algorithm>
 #include "Code128Encoder.h"
 #include "Code128SymbolTable.h"
 

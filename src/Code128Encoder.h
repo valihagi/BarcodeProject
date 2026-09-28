@@ -10,7 +10,7 @@ class Code128Encoder {
         const Code128SymbolTable& m_symbolTable;
 
         bool validateInput(const char&);
-        int calculateChecksum(std::vector<int>);
+        int calculateChecksum(const std::vector<int>&);
     public: 
         explicit Code128Encoder(const Code128SymbolTable&);
         ~Code128Encoder() = default;
