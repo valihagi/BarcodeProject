@@ -16,7 +16,13 @@ bool Code128Encoder::validateInput(const char& character)
 
 int Code128Encoder::calculateChecksum(std::vector<int> code)
 {
-    return 0;
+    int checksum = m_symbolTable.getStartCode();
+    for (size_t index = 1; index < code.size(); index++)
+    {
+        checksum += index * code[index];
+    }
+
+    return checksum % m_symbolTable.getChecksumModulo();
 }
 
 std::vector<int> Code128Encoder::encode(const std::string &input)
@@ -32,7 +38,7 @@ std::vector<int> Code128Encoder::encode(const std::string &input)
         code.push_back(m_symbolTable.getCodeForCharacter(c));
     }
 
-    code.push_back(m_symbolTable.getStopCode());
     code.push_back(calculateChecksum(code));
+    code.push_back(m_symbolTable.getStopCode());
     return code;
 }

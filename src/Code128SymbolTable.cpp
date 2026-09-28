@@ -2,15 +2,20 @@
 
 int Code128SymbolTable::getStartCode() const
 {
-    return 104;
+    return START_CODE;
 }
 
 int Code128SymbolTable::getStopCode() const
 {
-    return 106;
+    return STOP_CODE;
+}
+
+int Code128SymbolTable::getChecksumModulo() const
+{
+    return CHECKSUM_MODULO;
 }
 
 int Code128SymbolTable::getCodeForCharacter(const unsigned char &character) const
 {
-    return character - 32;
+    return character - ASCII_OFFSET;
 }
